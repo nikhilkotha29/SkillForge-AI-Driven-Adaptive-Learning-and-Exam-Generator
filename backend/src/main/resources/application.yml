@@ -16,7 +16,7 @@ spring:
 
 app:
   jwt:
-    secret: CHANGE_ME_TO_A_256_BIT_BASE64_SECRET_CHANGE_ME
+    secret: SkillForgeJwtSecretKey2026SecureRandomString
     expiration-ms: 86400000
   openai:
     api-key: ${OPENAI_API_KEY:}
