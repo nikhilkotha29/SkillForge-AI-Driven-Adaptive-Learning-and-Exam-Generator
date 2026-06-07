@@ -37,6 +37,9 @@ public class OpenAiQuizService {
 
     public List<Map<String, String>> generateQuestionsFromTopic(String topic, String difficultyLevel, int questionCount) {
         if (apiKey == null || apiKey.isBlank()) {
+            log.info("=== USING AI SERVICE ===");
+            log.info("API KEY PRESENT: {}", apiKey != null && !apiKey.isBlank());
+            log.info("MODEL: {}", model);
             log.warn("OpenAI API key is missing. Using local fallback question generator for topic: {}", topic);
             return fallbackQuestions(topic, questionCount);
         }
@@ -56,7 +59,7 @@ public class OpenAiQuizService {
         ));
 
         WebClient webClient = WebClient.builder()
-                .baseUrl("https://api.openai.com/v1")
+                .baseUrl("https://api.groq.com/openai/v1")
                 .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
